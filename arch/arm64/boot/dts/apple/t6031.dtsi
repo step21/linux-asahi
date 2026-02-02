@@ -249,5 +249,38 @@
             cap0-offset = <0x4>;
             maxnumirq-offset = <0xc>;
         };
+
+	pmgr0: power-management@292280000 {
+	compatible = "apple,t6031-pmgr", "apple,pmgr", "syscon", "simple-mfd";
+	#address-cells = <1>;
+	#size-cells = <1>;
+
+	reg = <0x2 0x92280000 0 0xc000>;
+};
+
+pmgr1: power-management@292800000 {
+	compatible = "apple,t6031-pmgr", "apple,pmgr", "syscon", "simple-mfd";
+	#address-cells = <1>;
+	#size-cells = <1>;
+
+	reg = <0x2 0x92800000 0 0x4000>;
+};
+
+pmgr2: power-management@2a0280000 {
+	compatible = "apple,t6031-pmgr", "apple,pmgr", "syscon", "simple-mfd";
+	#address-cells = <1>;
+	#size-cells = <1>;
+
+	reg = <0x2 0xa0280000 0 0x4000>;
+};
+
+pmgr3: power-management@408e80000 {
+	compatible = "apple,t6031-pmgr", "apple,pmgr", "syscon", "simple-mfd";
+	#address-cells = <1>;
+	#size-cells = <1>;
+
+	reg = <0x4 0x8e80000 0 0x4000>;
+};
+
     };
 };
