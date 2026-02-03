@@ -1,0 +1,115 @@
+// SPDX-License-Identifier: GPL-2.0+ OR MIT
+/*
+ * Devices used on die 0 on the Apple T602? "M3 Ultra" SoC and present on
+ * Apple T6030 / T6031 "M3 Pro" / "M3 Max".
+ *
+ * Copyright The Asahi Linux Contributors
+ */
+
+ aic: interrupt-controller@292400000 {
+            compatible = "apple,aic3";
+            #interrupt-cells = <3>;
+			#address-cells = <0>;
+            interrupt-controller;
+
+            /* 
+            * reg[0]: Main MMIO range (approx 1.8 MB)
+            * reg[1]: CPU Event/IACK register page (Base + 0x40000)
+            */
+            reg = <0x00000002 0x92400000 0x00000000 0x1cc000>,
+                <0x00000002 0x92440000 0x00000000 0x4000>;
+
+			reg-names = "core", "event";
+            config-offset = <0x10000>;
+            cap0-offset = <0x4>;
+            maxnumirq-offset = <0xc>;
+			power-domains = <&ps_aic>;
+        };
+
+        wdt: watchdog@a02d4000 {
+		compatible = "apple,t6031-wdt", "apple,wdt";
+		reg = <0x0 0xa02d4000 0x0 0x4000>;
+		clocks = <&clkref>;
+		interrupt-parent = <&aic>;
+		interrupts = <AIC_IRQ 718 IRQ_TYPE_LEVEL_HIGH>;
+		};
+
+        serial0: serial@391200000 {
+			compatible = "apple,s5l-uart";
+    		reg = <0x3 0x91200000 0x0 0x4000>;
+			reg-io-width = <4>;
+			interrupt-parent = <&aic>;
+			interrupts = <AIC_IRQ 1046 IRQ_TYPE_LEVEL_HIGH>;
+			clocks = <&clkref>, <&clkref>;
+			clock-names = "clkref", "uart";
+			status = "enabled";
+            power-domains = <&ps_uart_p>;
+		};
+
+        mtp_mbox: mbox@2ac408000 {
+		compatible = "apple,t6031-asc-mailbox", "apple,asc-mailbox-v4";
+		reg = <0x2 0xac408000 0x0 0x4000>;
+
+		interrupt-parent = <&aic>;
+		interrupts = <AIC_IRQ 692 IRQ_TYPE_LEVEL_HIGH>,
+			     <AIC_IRQ 693 IRQ_TYPE_LEVEL_HIGH>,
+			     <AIC_IRQ 694 IRQ_TYPE_LEVEL_HIGH>,
+			     <AIC_IRQ 695 IRQ_TYPE_LEVEL_HIGH>;
+		interrupt-names = "send-empty", "send-not-empty",
+				  "recv-empty", "recv-not-empty";
+		#mbox-cells = <0>;
+	};
+
+	mtp_dart: iommu@ac808000 {
+		compatible = "apple,t6031-dart", "apple,dart";
+		reg = <0x0 0xac808000 0x0 0x4000>,
+			  <0x0 0xac80c000 0x0 0x4000>;
+
+		interrupt-parent = <&aic>;
+		interrupts = <AIC_IRQ 675 IRQ_TYPE_LEVEL_HIGH>;
+
+		#iommu-cells = <1>;
+	};
+
+	mtp_dockchannel: fifo@acb00000 {
+		compatible = "apple,t6031-dockchannel", "apple,dockchannel";
+		reg = <0x0 0xacb00000 0x0 0x1000>;
+
+		interrupt-parent = <&aic>;
+		interrupts = <AIC_IRQ 676 IRQ_TYPE_LEVEL_HIGH>;
+
+		ranges;
+		#address-cells = <2>;
+		#size-cells = <2>;
+
+		interrupt-controller;
+		#interrupt-cells = <2>;
+		nonposted-mmio;
+
+		mtp_transport@acb14000 {
+			compatible = "apple,mtp-transport";
+			reg = <0x0 0xacb14000 0x0 0x1000>;
+		};
+
+		mtp_hid: input@acb30000 {
+			compatible = "apple,t6031-dockchannel-hid", "apple,dockchannel-hid";
+			reg = <0x0 0xacb30000 0x0 0x1000>,
+			      <0x0 0xacb34000 0x0 0x1000>,
+			      <0x0 0xacb28000 0x0 0x1000>,
+			      <0x0 0xacb2c000 0x0 0x1000>;
+			reg-names = "config", "data", "coproc-asc", "coproc-sram";
+
+			mboxes = <&mtp_mbox>;
+			iommus = <&mtp_dart 1>;
+
+			interrupt-parent = <&mtp_dockchannel>;
+			interrupts = <2 IRQ_TYPE_LEVEL_HIGH>,
+				     <3 IRQ_TYPE_LEVEL_HIGH>;
+			interrupt-names = "tx", "rx";
+
+			keyboard: keyboard {
+				/* Filled by bootloader */
+				hid-country-code = <0>;
+			};
+		};
+	};

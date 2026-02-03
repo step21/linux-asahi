@@ -1,0 +1,51 @@
+// SPDX-License-Identifier: GPL-2.0+ OR MIT
+/*
+ * Nodes present on both dies of T603? (M3 Ultra) and present on M3 Pro/Max
+ * Apple T6030 / T6031 "M3 Pro" / "M3 Max".
+ *
+ * Copyright The Asahi Linux Contributors
+ */
+
+ // cpufreq?
+
+ // pinctrl_nub?
+
+		DIE_NODE(pmgr0): power-management@292280000 {
+		compatible = "apple,t6031-pmgr", "apple,pmgr", "syscon", "simple-mfd";
+		#address-cells = <1>;
+		#size-cells = <1>;
+
+		reg = <0x2 0x92280000 0 0xc000>;
+		};
+
+		DIE_NODE(pmgr1): power-management@292800000 {
+		compatible = "apple,t6031-pmgr", "apple,pmgr", "syscon", "simple-mfd";
+		#address-cells = <1>;
+		#size-cells = <1>;
+
+		reg = <0x2 0x92800000 0 0x4000>;
+		};
+
+		DIE_NODE(pmgr2): power-management@2a0280000 {
+		compatible = "apple,t6031-pmgr", "apple,pmgr", "syscon", "simple-mfd";
+		#address-cells = <1>;
+		#size-cells = <1>;
+
+		reg = <0x2 0xa0280000 0 0x4000>;
+		};
+
+		DIE_NODE(pmgr3): power-management@408e80000 {
+		compatible = "apple,t6031-pmgr", "apple,pmgr", "syscon", "simple-mfd";
+		#address-cells = <1>;
+		#size-cells = <1>;
+
+		reg = <0x4 0x8e80000 0 0x4000>;
+		};
+
+ // pmgr_mini?
+
+ //pinctrl_aop?
+
+ //pinctrl_ap?
+
+ //pmgr_gfx?
