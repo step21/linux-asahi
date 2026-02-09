@@ -7,7 +7,7 @@
  */
 
  aic: interrupt-controller@292400000 {
-            compatible = "apple,aic3";
+            compatible = "apple,t6031-aic3", "t6030-aic3", "t8122-aic3";
             #interrupt-cells = <3>;
 			#address-cells = <0>;
             interrupt-controller;
