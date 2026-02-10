@@ -9,11 +9,27 @@
 
 /dts-v1/;
 
+#include <dt-bindings/leds/common.h>
 #include "t6031.dtsi"
+
 
 / {
 	compatible = "apple,j514c", "apple,j514", "apple,t6031", "apple,arm-platform";
 	model = "Apple MacBook Pro (14-inch, M3 Pro, 2023)";
+
+		led-controller {
+			compatible = "pwm-leds";
+			status = "disabled";
+
+			led-0 {
+				pwms = <&fpwm1 0 40000>;
+				label = "kbd_backlight";
+				function = LED_FUNCTION_KBD_BACKLIGHT;
+				color = <LED_COLOR_ID_WHITE>;
+				max-brightness = <255>;
+				default-state = "keep";
+			};
+		};
 
 	chosen {
 		#address-cells = <2>;

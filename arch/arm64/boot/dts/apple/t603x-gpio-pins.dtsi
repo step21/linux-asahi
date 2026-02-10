@@ -7,4 +7,47 @@
  * Copyright The Asahi Linux Contributors
  */
 
+ #include <dt-bindings/pinctrl/apple.h>
+ #include <dt-bindings/gpio/gpio.h>
+
+ #include "multi-die-cpp.h"
  
+&pinctrl_ap {
+
+			i2c1_pins: i2c1-pins {
+				pinmux = <APPLE_PINMUX(58, 1)>,
+					 <APPLE_PINMUX(59, 1)>;
+			};
+
+			i2c2_pins: i2c2-pins {
+				pinmux = <APPLE_PINMUX(60, 1)>,
+					 <APPLE_PINMUX(61, 1)>;
+			};
+
+			i2c3_pins: i2c3-pins {
+				pinmux = <APPLE_PINMUX(62, 1)>,
+					 <APPLE_PINMUX(63, 1)>;
+			};
+
+			i2c4_pins: i2c4-pins {
+				pinmux = <APPLE_PINMUX(64, 1)>,
+					 <APPLE_PINMUX(65, 1)>;
+			};
+
+			i2c6_pins: i2c6-pins {
+				pinmux = <APPLE_PINMUX(68, 1)>,
+					 <APPLE_PINMUX(69, 1)>;
+			};
+
+			i2c8_pins: i2c8-pins {
+				pinmux = <APPLE_PINMUX(72, 1)>,
+					 <APPLE_PINMUX(73, 1)>;
+			};
+
+
+
+			uart0_pins: uart0-pins {
+				pinmux = <APPLE_PINMUX(94, 1)>;
+				/* RX pin ? */
+			};
+		};

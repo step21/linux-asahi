@@ -6,6 +6,8 @@
  * Copyright The Asahi Linux Contributors
  */
 
+#include <dt-bindings/spmi/spmi.h>
+
  aic: interrupt-controller@292400000 {
             compatible = "apple,t6031-aic3", "t6030-aic3", "t8122-aic3";
             #interrupt-cells = <3>;
@@ -24,26 +26,196 @@
             cap0-offset = <0x4>;
             maxnumirq-offset = <0xc>;
 	    power-domains = <&ps_aic>;
-	    affinities {
-		/* Efficiency core PMU affinity (cluster0: cpu0-cpu3) */
+	    
+		affinities {
+
 		e-core-pmu-affinity {
 			apple,fiq-index = <AIC_CPU_PMU_E>;
 			cpus = <&cpu0 &cpu1 &cpu2 &cpu3>;
 		};
 
-		/* Performance core cluster 1 PMU affinity (cluster1: cpu4-cpu9) */
 		p0-core-pmu-affinity {
 			apple,fiq-index = <AIC_CPU_PMU_P>;
 			cpus = <&cpu4 &cpu5 &cpu6 &cpu7 &cpu8 &cpu9>;
 		};
 
-		/* Performance core cluster 2 PMU affinity (cluster2: cpu10-cpu15) */
 		p1-core-pmu-affinity {
 			apple,fiq-index = <AIC_CPU_PMU_P>;
 			cpus = <&cpu10 &cpu11 &cpu12 &cpu13 &cpu14 &cpu15>;
 		};
 	};
         };
+
+		fpwm1: pwm@191040000 {
+			compatible = "apple,t6031-fpwm", "apple,t8122-fpwm", "apple,s5l-fpwm";
+			reg = <0x1 0x91040000 0x0 0x4000>;
+			#pwm-cells = <2>;
+			clocks = <&clkref>;
+			power-domains = <&ps_pms_fpwm1>;
+			status = "disabled";
+		};
+
+		dockchannel_uart: serial@acb00000 {
+			compatible = "apple,t6031-dockchannel", "apple,dockchannel-uart";
+			reg = <0x0 0xacb00000 0x0 0x4000>;
+			interrupt-parent = <&aic>;
+			interrupts = <AIC_IRQ 676 IRQ_TYPE_LEVEL_HIGH>;
+			// power-domains = <&ps_dockchannel>; // unknown
+			status = "disabled";
+		};
+
+		i2c1: i2c@191014000 {
+			compatible = "apple,t6031-i2c", "apple,i2c";
+			reg = <0x1 0x91014000 0x0 0x4000>;
+			interrupt-parent = <&aic>;
+			interrupts = <AIC_IRQ 1327 IRQ_TYPE_LEVEL_HIGH>;
+			#address-cells = <1>;
+			#size-cells = <0>;
+			clocks = <&clkref>;
+			power-domains = <&ps_i2c1>;
+			pinctrl-0 = <&i2c1_pins>;
+			pinctrl-names = "default";
+			status = "disabled";
+		};
+
+		i2c2: i2c@191018000 {
+			compatible = "apple,t6031-i2c", "apple,i2c";
+			reg = <0x1 0x91018000 0x0 0x4000>;
+			interrupt-parent = <&aic>;
+			interrupts = <AIC_IRQ 1328 IRQ_TYPE_LEVEL_HIGH>;
+			#address-cells = <1>;
+			#size-cells = <0>;
+			clocks = <&clkref>;
+			power-domains = <&ps_i2c2>;
+			pinctrl-0 = <&i2c2_pins>;
+			pinctrl-names = "default";
+			status = "disabled";
+		};
+
+		i2c3: i2c@19101c000 {
+			compatible = "apple,t6031-i2c", "apple,i2c";
+			reg = <0x1 0x9101c000 0x0 0x4000>;
+			interrupt-parent = <&aic>;
+			interrupts = <AIC_IRQ 1329 IRQ_TYPE_LEVEL_HIGH>;
+			#address-cells = <1>;
+			#size-cells = <0>;
+			clocks = <&clkref>;
+			power-domains = <&ps_i2c3>;
+			pinctrl-0 = <&i2c3_pins>;
+			pinctrl-names = "default";
+			status = "disabled";
+		};
+
+		i2c4: i2c@191020000 {
+			compatible = "apple,t6031-i2c", "apple,i2c";
+			reg = <0x1 0x91020000 0x0 0x4000>;
+			interrupt-parent = <&aic>;
+			interrupts = <AIC_IRQ 1330 IRQ_TYPE_LEVEL_HIGH>;
+			#address-cells = <1>;
+			#size-cells = <0>;
+			clocks = <&clkref>;
+			power-domains = <&ps_i2c4>;
+			pinctrl-0 = <&i2c4_pins>;
+			pinctrl-names = "default";
+			status = "disabled";
+		};
+
+		i2c6: i2c@191028000 {
+			compatible = "apple,t6031-i2c", "apple,i2c";
+			reg = <0x1 0x91028000 0x0 0x4000>;
+			interrupt-parent = <&aic>;
+			interrupts = <AIC_IRQ 1332 IRQ_TYPE_LEVEL_HIGH>;
+			#address-cells = <1>;
+			#size-cells = <0>;
+			clocks = <&clkref>;
+			power-domains = <&ps_i2c6>;
+			pinctrl-0 = <&i2c6_pins>;
+			pinctrl-names = "default";
+			status = "disabled";
+		};
+
+		i2c8: i2c@191030000 {
+			compatible = "apple,t6031-i2c", "apple,i2c";
+			reg = <0x1 0x91030000 0x0 0x4000>;
+			interrupt-parent = <&aic>;
+			interrupts = <AIC_IRQ 1334 IRQ_TYPE_LEVEL_HIGH>;
+			#address-cells = <1>;
+			#size-cells = <0>;
+			clocks = <&clkref>;
+			power-domains = <&ps_i2c8>;
+			pinctrl-0 = <&i2c8_pins>;
+			pinctrl-names = "default";
+			status = "disabled";
+		};
+
+		spmi0: spmi@a1000000 {
+			compatible = "apple,t6031-spmi", "apple,spmi";
+			reg = <0x0 0xa1000000 0x0 0x4000>;
+			#address-cells = <2>;
+			#size-cells = <0>;
+			interrupt-parent = <&aic>;
+			interrupts = <AIC_IRQ 2 IRQ_TYPE_LEVEL_HIGH>;
+			status = "disabled";
+
+			/* PMU (chapelL1-b) - Main PMU */
+			pmu_spmi0: pmu@f {
+				compatible = "apple,chapel-pmu", "apple,spmi-pmu";
+				reg = <0xf SPMI_USID>;
+				#address-cells = <1>;
+				#size-cells = <1>;
+			};
+		};
+
+		spmi1: spmi@a1040000 {
+			compatible = "apple,t6031-spmi", "apple,spmi";
+			reg = <0x0 0xa1040000 0x0 0x4000>;
+			#address-cells = <2>;
+			#size-cells = <0>;
+			interrupt-parent = <&aic>;
+			interrupts = <AIC_IRQ 1008 IRQ_TYPE_LEVEL_HIGH>;
+			status = "disabled";
+
+			/* PMU (chapelF1-b) - Secondary PMU */
+			pmu_spmi1: pmu@f {
+				compatible = "apple,chapel-pmu", "apple,spmi-pmu";
+				reg = <0xf SPMI_USID>;
+				#address-cells = <1>;
+				#size-cells = <1>;
+			};
+		};
+
+		spmi2: spmi@a1080000 {
+			compatible = "apple,t6031-spmi", "apple,spmi";
+			reg = <0x0 0xa1080000 0x0 0x4000>;
+			#address-cells = <2>;
+			#size-cells = <0>;
+			status = "disabled";
+
+			/* Additional PMU/power management */
+			pmu_spmi2: pmu@9 {
+				compatible = "apple,spitfire-pmu", "apple,spmi-pmu";
+				reg = <0x9 SPMI_USID>;
+				#address-cells = <1>;
+				#size-cells = <1>;
+			};
+		};
+
+		spmi3: spmi@a10c0000 {
+			compatible = "apple,t6031-spmi", "apple,spmi";
+			reg = <0x0 0xa10c0000 0x0 0x4000>;
+			#address-cells = <2>;
+			#size-cells = <0>;
+			status = "disabled";
+
+			/* Additional PMU/power management */
+			pmu_spmi3: pmu@a {
+				compatible = "apple,sebring-pmu", "apple,spmi-pmu";
+				reg = <0xa SPMI_USID>;
+				#address-cells = <1>;
+				#size-cells = <1>;
+			};
+		};
+
 
         wdt: watchdog@a02d4000 {
 		compatible = "apple,t6031-wdt", "apple,wdt";
@@ -53,16 +225,28 @@
 		interrupts = <AIC_IRQ 718 IRQ_TYPE_LEVEL_HIGH>;
 		};
 
-        serial0: serial@391200000 {
-			compatible = "apple,s5l-uart";
+        /* serial0: serial@391200000 {
+			compatible = "apple,t6031-uart", "apple,s5l-uart";
     		reg = <0x3 0x91200000 0x0 0x4000>;
 			reg-io-width = <4>;
 			interrupt-parent = <&aic>;
 			interrupts = <AIC_IRQ 1046 IRQ_TYPE_LEVEL_HIGH>;
 			clocks = <&clkref>, <&clkref>;
 			clock-names = "clkref", "uart";
-			status = "enabled";
+			status = "disabled";
             power-domains = <&ps_uart_p>;
+		}; */
+
+		serial0: serial@191200000 {
+			compatible = "apple,t6031-uart", "apple,s5l-uart";
+			reg = <0x1 0x91200000 0x0 0x4000>;
+			reg-io-width = <4>;
+			interrupt-parent = <&aic>;
+			interrupts = <AIC_IRQ 1303 IRQ_TYPE_LEVEL_HIGH>;
+			clocks = <&clkref>, <&clkref>;
+			clock-names = "clkref", "clkref";
+			power-domains = <&ps_uart_p>;
+			status = "disabled";
 		};
 
         mtp_mbox: mbox@2ac408000 {

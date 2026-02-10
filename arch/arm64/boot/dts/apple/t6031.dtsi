@@ -25,7 +25,6 @@
 		ranges;
 		// filled via templates at the end of the file
 	
-		/* CPU frequency scaling nodes */
 	DIE_NODE(cpufreq_e): cpufreq@210e20000 {
 		compatible = "apple,t6031-cluster-cpufreq", "apple,t8112-cluster-cpufreq";
 		reg = <0x2 0x10e20000 0 0x1000>;

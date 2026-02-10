@@ -8,6 +8,87 @@
 
  // cpufreq?
 
+	DIE_NODE(pinctrl_ap): pinctrl@b3000000 {
+			compatible = "apple,t6031-pinctrl", "apple,t6020-pinctrl", "apple,t8103-pinctrl", "apple,pinctrl";
+			reg = <0x0 0xb3000000 0x0 0x100000>;
+			gpio-controller;
+			#gpio-cells = <2>;
+			gpio-ranges = <&DIE_NODE(pinctrl_ap) 0 0 200>;
+			apple,npins = <200>;
+
+			interrupt-controller;
+			#interrupt-cells = <2>;
+			interrupt-parent = <&aic>;
+			interrupts = <AIC_IRQ 458 IRQ_TYPE_LEVEL_HIGH>,
+				     <AIC_IRQ 459 IRQ_TYPE_LEVEL_HIGH>,
+				     <AIC_IRQ 460 IRQ_TYPE_LEVEL_HIGH>,
+				     <AIC_IRQ 461 IRQ_TYPE_LEVEL_HIGH>,
+				     <AIC_IRQ 462 IRQ_TYPE_LEVEL_HIGH>,
+				     <AIC_IRQ 463 IRQ_TYPE_LEVEL_HIGH>,
+				     <AIC_IRQ 464 IRQ_TYPE_LEVEL_HIGH>;
+	};
+
+	/* DIE_NODE(pinctrl_ap): pinctrl@39b028000 {
+	//	compatible =  "apple,pinctrl";
+	//	reg = <0x3 0x9b028000 0x0 0x4000>;
+	//
+	//	interrupt-parent = <&aic>;
+	//	interrupts = <AIC_IRQ DIE_NO 458 IRQ_TYPE_LEVEL_HIGH>,
+	//			<AIC_IRQ DIE_NO 459 IRQ_TYPE_LEVEL_HIGH>,
+	//			<AIC_IRQ DIE_NO 460 IRQ_TYPE_LEVEL_HIGH>,
+	//			<AIC_IRQ DIE_NO 461 IRQ_TYPE_LEVEL_HIGH>,
+	//			<AIC_IRQ DIE_NO 462 IRQ_TYPE_LEVEL_HIGH>,
+	//			<AIC_IRQ DIE_NO 463 IRQ_TYPE_LEVEL_HIGH>,
+	//			<AIC_IRQ DIE_NO 464 IRQ_TYPE_LEVEL_HIGH>;
+	//
+	//	clocks = <&clkref>;
+	//	power-domains = <&DIE_NODE(ps_gpio)>;
+	//
+	//	gpio-controller;
+	//	#gpio-cells = <2>;
+	//	gpio-ranges = <&DIE_NODE(pinctrl_ap) 0 0 255>;
+	//	apple,npins = <255>;
+	//
+	//	interrupt-controller;
+	//	#interrupt-cells = <2>;
+	}; */
+
+	DIE_NODE(pinctrl_aop): pinctrl@a8824000 {
+			compatible = "apple,t6031-pinctrl", "apple,pinctrl";
+			reg = <0x0 0xa8824000 0x0 0x4000>;
+			gpio-controller;
+			#gpio-cells = <2>;
+			gpio-ranges = <&pinctrl_aop 0 0 102>;
+			apple,npins = <102>;
+
+			interrupt-controller;
+			#interrupt-cells = <2>;
+		};
+
+		pinctrl_nub: pinctrl@a01f0000 {
+			compatible = "apple,t6031-pinctrl", "apple,pinctrl";
+			reg = <0x0 0xa01f0000 0x0 0x4000>;
+			gpio-controller;
+			#gpio-cells = <2>;
+			gpio-ranges = <&pinctrl_nub 0 0 59>;
+			apple,npins = <59>;
+
+			interrupt-controller;
+			#interrupt-cells = <2>;
+		};
+
+		pinctrl_smc: pinctrl@a4820000 {
+			compatible = "apple,t6031-pinctrl", "apple,pinctrl";
+			reg = <0x0 0xa4820000 0x0 0x4000>;
+			gpio-controller;
+			#gpio-cells = <2>;
+			gpio-ranges = <&pinctrl_smc 0 0 30>;
+			apple,npins = <30>;
+
+			interrupt-controller;
+			#interrupt-cells = <2>;
+		};
+
  // pinctrl_nub?
 
 		DIE_NODE(pmgr0): power-management@292280000 {

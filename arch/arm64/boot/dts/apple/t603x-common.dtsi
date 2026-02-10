@@ -48,7 +48,7 @@
 			enable-method = "spin-table";
 			cpu-release-addr = <0 0>;
 			next-level-cache = <&l2_cache_0>;
-			performance-domains = <&cpufreq_e>;
+			//performance-domains = <&cpufreq_e>;
 		};
 
 		cpu1: cpu@1 {
@@ -58,7 +58,7 @@
 			enable-method = "spin-table";
 			cpu-release-addr = <0 0>;
 			next-level-cache = <&l2_cache_0>;
-			performance-domains = <&cpufreq_e>;
+			//performance-domains = <&cpufreq_e>;
 		};
 
 		cpu2: cpu@2 {
@@ -68,7 +68,7 @@
 			enable-method = "spin-table";
 			cpu-release-addr = <0 0>;
 			next-level-cache = <&l2_cache_0>;
-			performance-domains = <&cpufreq_e>;
+			//performance-domains = <&cpufreq_e>;
 		};
 
 		cpu3: cpu@3 {
@@ -78,7 +78,7 @@
 			enable-method = "spin-table";
 			cpu-release-addr = <0 0>;
 			next-level-cache = <&l2_cache_0>;
-			performance-domains = <&cpufreq_e>;
+			//performance-domains = <&cpufreq_e>;
 		};
 
 		cpu4: cpu@10100 {
@@ -88,7 +88,7 @@
 			enable-method = "spin-table";
 			cpu-release-addr = <0 0>;
 			next-level-cache = <&l2_cache_0>;
-			performance-domains = <&cpufreq_p0>;
+			//performance-domains = <&cpufreq_p0>;
 		};
 
 		cpu5: cpu@10101 {
@@ -98,7 +98,7 @@
 			enable-method = "spin-table";
 			cpu-release-addr = <0 0>;
 			next-level-cache = <&l2_cache_0>;
-			performance-domains = <&cpufreq_p0>;
+			//performance-domains = <&cpufreq_p0>;
 		};
 
 		cpu6: cpu@10102 {
@@ -108,7 +108,7 @@
 			enable-method = "spin-table";
 			cpu-release-addr = <0 0>;
 			next-level-cache = <&l2_cache_0>;
-			performance-domains = <&cpufreq_p0>;
+			//performance-domains = <&cpufreq_p0>;
 		};
 
 		cpu7: cpu@10103 {
@@ -118,7 +118,7 @@
 			enable-method = "spin-table";
 			cpu-release-addr = <0 0>;
 			next-level-cache = <&l2_cache_0>;
-			performance-domains = <&cpufreq_p0>;
+			//performance-domains = <&cpufreq_p0>;
 		};
 
 		cpu8: cpu@10104 {
@@ -128,7 +128,7 @@
 			enable-method = "spin-table";
 			cpu-release-addr = <0 0>;
 			next-level-cache = <&l2_cache_0>;
-			performance-domains = <&cpufreq_p0>;
+			//performance-domains = <&cpufreq_p0>;
 		};
 
 		cpu9: cpu@10105 {
@@ -138,7 +138,7 @@
 			enable-method = "spin-table";
 			cpu-release-addr = <0 0>;
 			next-level-cache = <&l2_cache_0>;
-			performance-domains = <&cpufreq_p0>;
+			//performance-domains = <&cpufreq_p0>;
 		};
 
 		cpu10: cpu@10200 {
@@ -148,7 +148,7 @@
 			enable-method = "spin-table";
 			cpu-release-addr = <0 0>;
 			next-level-cache = <&l2_cache_0>;
-			performance-domains = <&cpufreq_p1>;
+			//performance-domains = <&cpufreq_p1>;
 		};
 
 		cpu11: cpu@10201 {
@@ -158,7 +158,7 @@
 			enable-method = "spin-table";
 			cpu-release-addr = <0 0>;
 			next-level-cache = <&l2_cache_0>;
-			performance-domains = <&cpufreq_p1>;
+			//performance-domains = <&cpufreq_p1>;
 		};
 
 		cpu12: cpu@10202 {
@@ -168,7 +168,7 @@
 			enable-method = "spin-table";
 			cpu-release-addr = <0 0>;
 			next-level-cache = <&l2_cache_0>;
-			performance-domains = <&cpufreq_p1>;
+			//performance-domains = <&cpufreq_p1>;
 		};
 
 		cpu13: cpu@10203 {
@@ -178,7 +178,7 @@
 			enable-method = "spin-table";
 			cpu-release-addr = <0 0>;
 			next-level-cache = <&l2_cache_0>;
-			performance-domains = <&cpufreq_p1>;
+			//performance-domains = <&cpufreq_p1>;
 		};
 
 		cpu14: cpu@10204 {
@@ -188,7 +188,7 @@
 			enable-method = "spin-table";
 			cpu-release-addr = <0 0>;
 			next-level-cache = <&l2_cache_0>;
-			performance-domains = <&cpufreq_p1>;
+			//performance-domains = <&cpufreq_p1>;
 		};
 
 		cpu15: cpu@10205 {
@@ -198,7 +198,7 @@
 			enable-method = "spin-table";
 			cpu-release-addr = <0 0>;
 			next-level-cache = <&l2_cache_0>;
-			performance-domains = <&cpufreq_p1>;
+			//performance-domains = <&cpufreq_p1>;
 		};
 
 		l2_cache_0: l2-cache-0 {
