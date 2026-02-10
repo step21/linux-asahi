@@ -19,11 +19,30 @@
             reg = <0x00000002 0x92400000 0x00000000 0x1cc000>,
                 <0x00000002 0x92440000 0x00000000 0x4000>;
 
-			reg-names = "core", "event";
+	    reg-names = "core", "event";
             config-offset = <0x10000>;
             cap0-offset = <0x4>;
             maxnumirq-offset = <0xc>;
-			power-domains = <&ps_aic>;
+	    power-domains = <&ps_aic>;
+	    affinities {
+		/* Efficiency core PMU affinity (cluster0: cpu0-cpu3) */
+		e-core-pmu-affinity {
+			apple,fiq-index = <AIC_CPU_PMU_E>;
+			cpus = <&cpu0 &cpu1 &cpu2 &cpu3>;
+		};
+
+		/* Performance core cluster 1 PMU affinity (cluster1: cpu4-cpu9) */
+		p0-core-pmu-affinity {
+			apple,fiq-index = <AIC_CPU_PMU_P>;
+			cpus = <&cpu4 &cpu5 &cpu6 &cpu7 &cpu8 &cpu9>;
+		};
+
+		/* Performance core cluster 2 PMU affinity (cluster2: cpu10-cpu15) */
+		p1-core-pmu-affinity {
+			apple,fiq-index = <AIC_CPU_PMU_P>;
+			cpus = <&cpu10 &cpu11 &cpu12 &cpu13 &cpu14 &cpu15>;
+		};
+	};
         };
 
         wdt: watchdog@a02d4000 {
