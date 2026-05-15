@@ -15,13 +15,16 @@
 	};
 
 	aic: interrupt-controller@292400000 {
-		compatible = "apple,t6031-aic3", "apple,t8122-aic3";
+		compatible = "apple,t6031-aic3", "apple,t8122-aic3", "apple,aic3";
 		#interrupt-cells = <4>;
 		interrupt-controller;
 
 		reg = <0x00000002 0x92400000 0x00000000 0x1cc000>,
 		      <0x00000002 0x92440000 0x00000000 0x4000>;
 		reg-names = "core", "event";
+		config-offset = <0x10000>;
+		cap0-offset = <0x4>;
+		maxnumirq-offset = <0xc>;
 		power-domains = <&ps_aic>;
         };
 
